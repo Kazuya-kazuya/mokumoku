@@ -25,16 +25,29 @@ public class RegistServlet extends HttpServlet
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String idstr = request.getParameter("registId");
-        int id = Integer.parseInt(idstr);
-        String name = request.getParameter("registName");
-        Sex sex = Sex.valueOf(request.getParameter("registSex"));
+        try
+        {
+            String idstr = request.getParameter("registId");
+            int id = Integer.parseInt(idstr);
+            String name = request.getParameter("registName");
+            Sex sex = Sex.valueOf(request.getParameter("registSex"));
 
-        RegistBean bean;
-        bean = service.KaiinService.doRegist(id, name, sex);
-        request.setAttribute("bean", bean);
-        RequestDispatcher disp = request.getRequestDispatcher("/Regist.jsp");
-        disp.forward(request, response);
+            if(name.equals(""))
+            {
+                throw new NoTextException();
+            }
+
+            RegistBean bean;
+            bean = service.KaiinService.doRegist(id, name, sex);
+            request.setAttribute("bean", bean);
+            RequestDispatcher disp = request.getRequestDispatcher("/Regist.jsp");
+            disp.forward(request, response);
+        }
+        catch(NumberFormatException | NoTextException e)
+        {
+            RequestDispatcher disp = request.getRequestDispatcher("/index.html");
+            disp.forward(request, response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

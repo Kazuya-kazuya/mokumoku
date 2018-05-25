@@ -24,13 +24,21 @@ public class SearchServlet extends HttpServlet
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String idstr = request.getParameter("searchId");
-        int id = Integer.parseInt(idstr);
+        try
+        {
+            String idstr = request.getParameter("searchId");
+            int id = Integer.parseInt(idstr);
 
-        SearchBean bean = service.KaiinService.doSearch(id);
-        request.setAttribute("bean", bean);
-        RequestDispatcher disp = request.getRequestDispatcher("/Search.jsp");
-        disp.forward(request, response);
+            SearchBean bean = service.KaiinService.doSearch(id);
+            request.setAttribute("bean", bean);
+            RequestDispatcher disp = request.getRequestDispatcher("/Search.jsp");
+            disp.forward(request, response);
+        }
+        catch(NumberFormatException e)
+        {
+            RequestDispatcher disp = request.getRequestDispatcher("/index.html");
+            disp.forward(request, response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
