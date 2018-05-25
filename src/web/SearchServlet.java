@@ -9,20 +9,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.SearchBean;
 
 
-@WebServlet("/LISTOUTServlet")
-public class LISTOUTServlet extends HttpServlet {
+
+@WebServlet("/SearchServlet")
+public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public LISTOUTServlet() {
+    public SearchServlet() {
         super();
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher disp = request.getRequestDispatcher("/LISTOUT.jsp");
+		String idstr = request.getParameter("searchId");
+		int id = Integer.parseInt(idstr);
+		SearchBean bean;
+
+		bean = service.KaiinService.doSearch(id);
+		request.setAttribute("bean", bean);
+		RequestDispatcher disp = request.getRequestDispatcher("/Search.jsp");
 		disp.forward(request, response);
+
+
 	}
 
 

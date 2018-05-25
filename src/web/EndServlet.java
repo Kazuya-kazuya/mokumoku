@@ -13,11 +13,11 @@ import bean.EndBean;
 
 
 
-@WebServlet("/ENDServlet")
-public class ENDServlet extends HttpServlet {
+@WebServlet("/EndServlet")
+public class EndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public ENDServlet() {
+    public EndServlet() {
         super();
     }
 
@@ -25,7 +25,7 @@ public class ENDServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EndBean end = new EndBean();
 		request.setAttribute("bean", end);
-		RequestDispatcher disp = request.getRequestDispatcher("/END.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher("/End.jsp");
 		disp.forward(request, response);
 	}
 

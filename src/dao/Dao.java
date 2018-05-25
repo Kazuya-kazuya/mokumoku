@@ -12,14 +12,19 @@ public abstract class Dao
 		this.con = con;
 	}
 
-	public static Connection getConnection() throws ClassNotFoundException, SQLException
+	public static Connection getConnection() throws SQLException
 	 {
 		String user = "train2018";
 		String pass = "train2018";
 		String servername = "localhost:3306";
 		String dbname = "new_schema";
 
-		Class.forName("com.mysql.jdbc.Driver");
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 
 
 		Connection c = DriverManager.getConnection(

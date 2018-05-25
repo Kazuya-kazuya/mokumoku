@@ -9,19 +9,46 @@ import dao.Dao;
 import domain.Sex;
 import vo.KaiinVo;
 
-public class KaiinService {
-	public static RegistBean doRegist(int id, String name, Sex sex) throws ClassNotFoundException, SQLException {
+public class KaiinService
+{
+
+	public static RegistBean doRegist(int id, String name, Sex sex)
+	{
 		KaiinVo kaiin = new KaiinVo(id, name, sex);
-		Connection connection = Dao.getConnection();
-		dao.KaiinManager kaiinManager = new dao.KaiinManager(connection);
-		kaiinManager.doRegist(kaiin);
-		RegistBean bean = new RegistBean();
-		return bean;
+
+		try
+		(
+			Connection connection = Dao.getConnection();
+		)
+		{
+			dao.KaiinManager kaiinManager = new dao.KaiinManager(connection);
+			kaiinManager.doRegist(kaiin);
+			RegistBean bean = new RegistBean();
+			return bean;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
-	public static SearchBean doSearch(int id) throws ClassNotFoundException, SQLException {
-		Connection connection = Dao.getConnection();
-		dao.KaiinManager kaiinManager = new dao.KaiinManager(connection);
-		SearchBean bean = kaiinManager.doSearch(id);
-		return bean;
+
+	public static SearchBean doSearch(int id)
+	{
+		SearchBean bean = new SearchBean();
+
+		try(
+			Connection connection = Dao.getConnection();
+		)
+		{
+			dao.KaiinManager kaiinManager = new dao.KaiinManager(connection);
+			bean = kaiinManager.doSearch(id);
+			return bean;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 }

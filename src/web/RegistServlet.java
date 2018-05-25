@@ -1,7 +1,6 @@
 package web;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,11 +14,11 @@ import domain.Sex;
 
 
 
-@WebServlet("/REGISTServlet")
-public class REGISTServlet extends HttpServlet {
+@WebServlet("/RegistServlet")
+public class RegistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public REGISTServlet() {
+    public RegistServlet() {
         super();
     }
 
@@ -39,18 +38,11 @@ public class REGISTServlet extends HttpServlet {
 
 
 		RegistBean regist;
-		try {
-			regist = service.KaiinService.doRegist(id, name, sex);
-			request.setAttribute("bean", regist);
-			RequestDispatcher disp = request.getRequestDispatcher("/REGIST.jsp");
-			disp.forward(request, response);
-		} catch (ClassNotFoundException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
+
+		regist = service.KaiinService.doRegist(id, name, sex);
+		request.setAttribute("bean", regist);
+		RequestDispatcher disp = request.getRequestDispatcher("/Regist.jsp");
+		disp.forward(request, response);
 
 	}
 
