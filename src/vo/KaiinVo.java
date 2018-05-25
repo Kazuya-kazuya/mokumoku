@@ -12,18 +12,6 @@ public class KaiinVo
 	private Sex sex;
 
 
-	public domain.Sex getSex() {
-		return sex;
-	}
-
-
-
-	public void setSex(domain.Sex sex) {
-		this.sex = sex;
-	}
-
-
-
 	public KaiinVo(int id, String name, Sex sex) {
 		super();
 		this.id = id;
@@ -31,8 +19,6 @@ public class KaiinVo
 		this.date = new Date(new java.util.Date().getTime());
 		this.sex = sex;
 	}
-
-
 
 	public KaiinVo(int id, String name, Date date, Sex sex) {
 		super();
@@ -43,30 +29,43 @@ public class KaiinVo
 	}
 
 
-
-	public int getId() {
+	public int getId()
+	{
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(int id)
+	{
 		this.id = id;
 	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-	public Date getDate() {
+	public Date getDate()
+	{
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(Date date)
+	{
 		this.date = date;
 	}
 
+	public domain.Sex getSex()
+	{
+		return sex;
+	}
+
+	public void setSex(Sex sex)
+	{
+		this.sex = sex;
+	}
 
 
-	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "KaiinVo [id=" + id + ", name=" + name + ", date=" + date + ", sex=" + sex + "]";
 	}
 

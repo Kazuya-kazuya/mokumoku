@@ -2,13 +2,19 @@ package bean;
 
 public class RegistBean
 {
-	private String messege = "登録しました";
+	private String messege;
 
-	public String getMessege() {
+
+	public RegistBean(){}
+
+
+	public String getMessege()
+	{
 		return messege;
 	}
 
-	public void setMessege(String messege) {
+	public void setMessege(String messege)
+	{
 		this.messege = messege;
 	}
 }

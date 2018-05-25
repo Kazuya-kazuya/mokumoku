@@ -5,17 +5,19 @@ public class EndBean
 	private String messege;
 
 
-
-	public EndBean() {
-		super();
+	public EndBean()
+	{
 		this.messege = "終わります";
 	}
 
-	public String getMessege() {
+
+	public String getMessege()
+	{
 		return messege;
 	}
 
-	public void setMessege(String messege) {
+	public void setMessege(String messege)
+	{
 		this.messege = messege;
 	}
 }

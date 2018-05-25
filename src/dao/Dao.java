@@ -7,25 +7,21 @@ public abstract class Dao
 {
 	 protected Connection con;
 
-	 public Dao(Connection con) {
-		super();
-		this.con = con;
-	}
 
-	public static Connection getConnection() throws SQLException
+	 public Dao(Connection con)
+	 {
+		this.con = con;
+	 }
+
+
+	public static Connection getConnection() throws SQLException, ClassNotFoundException
 	 {
 		String user = "train2018";
 		String pass = "train2018";
 		String servername = "localhost:3306";
 		String dbname = "new_schema";
 
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-
+		Class.forName("com.mysql.jdbc.Driver");
 
 		Connection c = DriverManager.getConnection(
 					"jdbc:mysql://"
@@ -35,7 +31,6 @@ public abstract class Dao
 					user,
 					pass);
 
-		//取得したコネクションの返却
 		return c;
 	 }
 
