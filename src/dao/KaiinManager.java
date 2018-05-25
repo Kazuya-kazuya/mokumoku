@@ -12,109 +12,109 @@ import vo.KaiinVo;
 
 public class KaiinManager
 {
-	private Connection connection;
+    private Connection connection;
 
 
-	public KaiinManager(Connection connection)
-	{
-		this.connection = connection;
-	}
+    public KaiinManager(Connection connection)
+    {
+        this.connection = connection;
+    }
 
 
-	private static final String KAIINNLIST_SQL =
-			"select "
-					+ "   id "
-					+ "  ,name "
-					+ "  ,date "
-					+ "  ,sex "
-					+ "from   "
-					+ "   member ";
+    private static final String KAIINNLIST_SQL =
+            "select "
+                    + "   id "
+                    + "  ,name "
+                    + "  ,date "
+                    + "  ,sex "
+                    + "from   "
+                    + "   member ";
 
-	private static final String KAIINN_SQL =
-			"select "
-					+ "   id "
-					+ "  ,name "
-					+ "  ,date "
-					+ "  ,sex "
-					+ "from   "
-					+ "   member "
-					+ "WHERE "
-					+ " id = ? ";
+    private static final String KAIINN_SQL =
+            "select "
+                    + "   id "
+                    + "  ,name "
+                    + "  ,date "
+                    + "  ,sex "
+                    + "from   "
+                    + "   member "
+                    + "WHERE "
+                    + " id = ? ";
 
-	private static final String REGIIST_SQL =
-			"insert " +
-					"into member( " +
-					"	id, " +
-					"    name ," +
-					"    date, " +
-					"    sex " +
-					") " +
-					"values (" +
-					"	?, " +
-					"    ?, " +
-					"    ?, " +
-					"    ? " +
-					")";
+    private static final String REGIIST_SQL =
+            "insert " +
+                    "into member( " +
+                    "	id, " +
+                    "    name ," +
+                    "    date, " +
+                    "    sex " +
+                    ") " +
+                    "values (" +
+                    "	?, " +
+                    "    ?, " +
+                    "    ?, " +
+                    "    ? " +
+                    ")";
 
 
-	public void doRegist(KaiinVo kaiin) throws SQLException
-	{
-		PreparedStatement stmt = null;
+    public void doRegist(KaiinVo kaiin) throws SQLException
+    {
+        PreparedStatement stmt = null;
 
-		stmt = this.connection.prepareStatement(REGIIST_SQL);
+        stmt = this.connection.prepareStatement(REGIIST_SQL);
 
-		stmt.setInt(1,kaiin.getId());
-		stmt.setString(2,kaiin.getName());
-		stmt.setDate(3,kaiin.getDate());
-		stmt.setString(4, kaiin.getSex().toString());
+        stmt.setInt(1,kaiin.getId());
+        stmt.setString(2,kaiin.getName());
+        stmt.setDate(3,kaiin.getDate());
+        stmt.setString(4, kaiin.getSex().toString());
 
-		stmt.executeUpdate();
+        stmt.executeUpdate();
 
-	}
+    }
 
-	public KaiinVo doSearch(int id) throws SQLException
-	{
-		PreparedStatement stmt = null;
-		ResultSet rset = null;
-		KaiinVo kaiin = new KaiinVo();
+    public KaiinVo doSearch(int id) throws SQLException
+    {
+        PreparedStatement stmt = null;
+        ResultSet rset = null;
+        KaiinVo kaiin = new KaiinVo();
 
-		stmt = this.connection.prepareStatement(KAIINN_SQL);
+        stmt = this.connection.prepareStatement(KAIINN_SQL);
 
-		stmt.setInt(1,id);
+        stmt.setInt(1,id);
 
-		rset = stmt.executeQuery();
+        rset = stmt.executeQuery();
 
-		while(rset.next())
-		{
-			kaiin.setId(rset.getInt(1));
-			kaiin.setName(rset.getString(2));
-			kaiin.setDate(rset.getDate(3));
-			kaiin.setSex(Sex.valueOf(rset.getString(4)));
-		}
+        while(rset.next())
+        {
+            kaiin.setId(rset.getInt(1));
+            kaiin.setName(rset.getString(2));
+            kaiin.setDate(rset.getDate(3));
+            kaiin.setSex(Sex.valueOf(rset.getString(4)));
+        }
 
-		return kaiin;
-	}
+        return kaiin;
+    }
 
-	public List<KaiinVo> doListout() throws SQLException
-	{
-		PreparedStatement stmt = null;
-		ResultSet rset = null;
-		List<KaiinVo> list = new ArrayList<KaiinVo>();;
+    public List<KaiinVo> doListout() throws SQLException
+    {
+        PreparedStatement stmt = null;
+        ResultSet rset = null;
+        List<KaiinVo> list = new ArrayList<KaiinVo>();;
 
-		stmt = this.connection.prepareStatement(KAIINNLIST_SQL);
+        stmt = this.connection.prepareStatement(KAIINNLIST_SQL);
 
-		rset = stmt.executeQuery();
+        rset = stmt.executeQuery();
 
-		while(rset.next())
-		{
-			KaiinVo kaiin = new KaiinVo();
-			kaiin.setId(rset.getInt(1));
-			kaiin.setName(rset.getString(2));
-			kaiin.setDate(rset.getDate(3));
-			kaiin.setSex(Sex.valueOf(rset.getString(4)));
-			list.add(kaiin);
-		}
+        while(rset.next())
+        {
+            KaiinVo kaiin = new KaiinVo();
+            kaiin.setId(rset.getInt(1));
+            kaiin.setName(rset.getString(2));
+            kaiin.setDate(rset.getDate(3));
+            kaiin.setSex(Sex.valueOf(rset.getString(4)));
+            list.add(kaiin);
+        }
 
-		return list;
-	}
+        return list;
+    }
 }

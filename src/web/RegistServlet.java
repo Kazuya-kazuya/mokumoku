@@ -17,35 +17,35 @@ import domain.Sex;
 @WebServlet("/RegistServlet")
 public class RegistServlet extends HttpServlet
 {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
     public RegistServlet(){}
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		String idstr = request.getParameter("registId");
-		int id = Integer.parseInt(idstr);
-		String name = request.getParameter("registName");
-		Sex sex = Sex.valueOf(request.getParameter("registSex"));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        String idstr = request.getParameter("registId");
+        int id = Integer.parseInt(idstr);
+        String name = request.getParameter("registName");
+        Sex sex = Sex.valueOf(request.getParameter("registSex"));
 
-		try
-		{
-			RegistBean bean;
-			bean = service.KaiinService.doRegist(id, name, sex);
-			request.setAttribute("bean", bean);
-			RequestDispatcher disp = request.getRequestDispatcher("/Regist.jsp");
-			disp.forward(request, response);
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-	}
+        try
+        {
+            RegistBean bean;
+            bean = service.KaiinService.doRegist(id, name, sex);
+            request.setAttribute("bean", bean);
+            RequestDispatcher disp = request.getRequestDispatcher("/Regist.jsp");
+            disp.forward(request, response);
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		doGet(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        doGet(request, response);
+    }
 }

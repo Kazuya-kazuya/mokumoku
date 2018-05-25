@@ -10,7 +10,7 @@
 <body>
 <body>
 <form  method="POST" action="index.html">
-	<input type="submit" value="戻る"><br><br>
+  <input type="submit" value="戻る"><br><br>
 </form>
 <%=bean.getMessage() %><br>
 <table border="1">
