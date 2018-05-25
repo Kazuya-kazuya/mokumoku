@@ -12,7 +12,8 @@ public class KaiinVo
 	private Sex sex;
 
 
-	public KaiinVo(int id, String name, Sex sex) {
+	public KaiinVo(int id, String name, Sex sex)
+	{
 		super();
 		this.id = id;
 		this.name = name;
@@ -20,13 +21,16 @@ public class KaiinVo
 		this.sex = sex;
 	}
 
-	public KaiinVo(int id, String name, Date date, Sex sex) {
+	public KaiinVo(int id, String name, Date date, Sex sex)
+	{
 		super();
 		this.id = id;
 		this.name = name;
 		this.date = date;
 		this.sex = sex;
 	}
+
+	public KaiinVo(){}
 
 
 	public int getId()

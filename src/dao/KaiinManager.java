@@ -4,10 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import bean.KaiinBean;
-import bean.ListoutBean;
-import bean.SearchBean;
 import domain.Sex;
 import vo.KaiinVo;
 
@@ -73,11 +72,11 @@ public class KaiinManager
 
 	}
 
-	public SearchBean doSearch(int id) throws SQLException
+	public KaiinVo doSearch(int id) throws SQLException
 	{
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
-		SearchBean bean = new SearchBean();
+		KaiinVo kaiin = new KaiinVo();
 
 		stmt = this.connection.prepareStatement(KAIINN_SQL);
 
@@ -87,21 +86,20 @@ public class KaiinManager
 
 		while(rset.next())
 		{
-			bean.setId(rset.getInt(1));
-			bean.setName(rset.getString(2));
-			bean.setDate(rset.getDate(3));
-			bean.setSex(Sex.valueOf(rset.getString(4)));
-			bean.setMessege("検索しました");
+			kaiin.setId(rset.getInt(1));
+			kaiin.setName(rset.getString(2));
+			kaiin.setDate(rset.getDate(3));
+			kaiin.setSex(Sex.valueOf(rset.getString(4)));
 		}
 
-		return bean;
+		return kaiin;
 	}
 
-	public ListoutBean doListout() throws SQLException
+	public List<KaiinVo> doListout() throws SQLException
 	{
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
-		ListoutBean bean = new ListoutBean();
+		List<KaiinVo> list = new ArrayList<KaiinVo>();;
 
 		stmt = this.connection.prepareStatement(KAIINNLIST_SQL);
 
@@ -109,16 +107,14 @@ public class KaiinManager
 
 		while(rset.next())
 		{
-			KaiinBean kaiin = new KaiinBean();
+			KaiinVo kaiin = new KaiinVo();
 			kaiin.setId(rset.getInt(1));
 			kaiin.setName(rset.getString(2));
 			kaiin.setDate(rset.getDate(3));
 			kaiin.setSex(Sex.valueOf(rset.getString(4)));
-			bean.getList().add(kaiin);
+			list.add(kaiin);
 		}
 
-		bean.setMessage("会員リストです");
-
-		return bean;
+		return list;
 	}
 }

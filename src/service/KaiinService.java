@@ -2,7 +2,10 @@ package service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import bean.KaiinBean;
 import bean.ListoutBean;
 import bean.RegistBean;
 import bean.SearchBean;
@@ -44,7 +47,12 @@ public class KaiinService
 		)
 		{
 			dao.KaiinManager kaiinManager = new dao.KaiinManager(connection);
-			bean = kaiinManager.doSearch(id);
+			KaiinVo kaiin = kaiinManager.doSearch(id);
+			bean.setId(kaiin.getId());
+			bean.setName(kaiin.getName());
+			bean.setDate(kaiin.getDate());
+			bean.setSex(kaiin.getSex());
+			bean.setMessege("検索しました");
 			return bean;
 		}
 		catch(SQLException e)
@@ -64,7 +72,19 @@ public class KaiinService
 		)
 		{
 			dao.KaiinManager kaiinManager = new dao.KaiinManager(connection);
-			bean = kaiinManager.doListout();
+			List<KaiinVo> voList = kaiinManager.doListout();
+			List<KaiinBean> beanList = new ArrayList<KaiinBean>();
+			for(KaiinVo kaiinVo : voList)
+			{
+				KaiinBean kaiinBean = new KaiinBean();
+				kaiinBean.setId(kaiinVo.getId());
+				kaiinBean.setName(kaiinVo.getName());
+				kaiinBean.setDate(kaiinVo.getDate());
+				kaiinBean.setSex(kaiinVo.getSex());
+				beanList.add(kaiinBean);
+			}
+			bean.setList(beanList);
+			bean.setMessage("会員リストです");
 			return bean;
 		}
 		catch(SQLException e)
