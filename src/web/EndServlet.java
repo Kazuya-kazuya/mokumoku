@@ -24,7 +24,7 @@ public class EndServlet extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		EndBean end = new EndBean();
+		EndBean end = service.KaiinService.doEnd();
 		request.setAttribute("bean", end);
 		RequestDispatcher disp = request.getRequestDispatcher("/End.jsp");
 		disp.forward(request, response);

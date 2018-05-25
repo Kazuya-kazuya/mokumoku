@@ -26,8 +26,7 @@ public class ListoutServlet extends HttpServlet
 	{
 		try
 		{
-			ListoutBean bean;
-			bean = service.KaiinService.doListout();
+			ListoutBean bean = service.KaiinService.doListout();
 			request.setAttribute("bean", bean);
 			RequestDispatcher disp = request.getRequestDispatcher("/Listout.jsp");
 			disp.forward(request, response);

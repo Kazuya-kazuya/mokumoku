@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.EndBean;
 import bean.KaiinBean;
 import bean.ListoutBean;
 import bean.RegistBean;
@@ -15,6 +16,12 @@ import vo.KaiinVo;
 
 public class KaiinService
 {
+	public static EndBean doEnd()
+	{
+		EndBean bean = new EndBean();
+		bean.setMessege("終了します");
+		return bean;
+	}
 	public static RegistBean doRegist(int id, String name, Sex sex) throws ClassNotFoundException
 	{
 		KaiinVo kaiin = new KaiinVo(id, name, sex);
