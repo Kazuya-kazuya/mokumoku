@@ -8,14 +8,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%=bean.getMessege() %><br>
-ID=<%=bean.getId() %><br>
-NAME=<%=bean.getName() %><br>
-DATE=<%=bean.getDate().toString() %><br>
-SEX=<%=bean.getSex().toString() %><br>
 <form  method="POST" action="index.html">
 	<input type="submit" value="戻る"><br><br>
 </form>
+<%=bean.getMessege() %>
+<table border="1">
+<tr>
+<td>ID</td>
+<td>NAME</td>
+<td>DATE</td>
+<td>SEX</td>
+</tr>
+<tr>
+<td><%=bean.getId() %></td>
+<td><%=bean.getName() %></td>
+<td><%=bean.getDate().toString() %></td>
+<td><%=bean.getSex().toString() %></td>
+</tr>
+</table>
 
 </body>
 </html>

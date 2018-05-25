@@ -117,6 +117,8 @@ public class KaiinManager
 			bean.getList().add(kaiin);
 		}
 
+		bean.setMessage("会員リストです");
+
 		return bean;
 	}
 }

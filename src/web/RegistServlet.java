@@ -28,7 +28,7 @@ public class RegistServlet extends HttpServlet
 		String idstr = request.getParameter("registId");
 		int id = Integer.parseInt(idstr);
 		String name = request.getParameter("registName");
-		Sex sex = Sex.valueOf(request.getParameter("sex"));
+		Sex sex = Sex.valueOf(request.getParameter("registSex"));
 
 		try
 		{

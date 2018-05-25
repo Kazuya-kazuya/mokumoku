@@ -13,7 +13,7 @@
 	<input type="submit" value="戻る"><br><br>
 </form>
 <%=bean.getMessage() %><br>
-<table>
+<table border="1">
 <tr>
 <td>ID</td>
 <td>NAME</td>
