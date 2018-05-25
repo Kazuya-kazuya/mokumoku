@@ -24,17 +24,10 @@ public class ListoutServlet extends HttpServlet
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        try
-        {
-            ListoutBean bean = service.KaiinService.doListout();
-            request.setAttribute("bean", bean);
-            RequestDispatcher disp = request.getRequestDispatcher("/Listout.jsp");
-            disp.forward(request, response);
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
+        ListoutBean bean = service.KaiinService.doListout();
+        request.setAttribute("bean", bean);
+        RequestDispatcher disp = request.getRequestDispatcher("/Listout.jsp");
+        disp.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

@@ -27,17 +27,10 @@ public class SearchServlet extends HttpServlet
         String idstr = request.getParameter("searchId");
         int id = Integer.parseInt(idstr);
 
-        try
-        {
-            SearchBean bean = service.KaiinService.doSearch(id);
-            request.setAttribute("bean", bean);
-            RequestDispatcher disp = request.getRequestDispatcher("/Search.jsp");
-            disp.forward(request, response);
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
+        SearchBean bean = service.KaiinService.doSearch(id);
+        request.setAttribute("bean", bean);
+        RequestDispatcher disp = request.getRequestDispatcher("/Search.jsp");
+        disp.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

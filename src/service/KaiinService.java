@@ -22,7 +22,7 @@ public class KaiinService
         bean.setMessege("終了します");
         return bean;
     }
-    public static RegistBean doRegist(int id, String name, Sex sex) throws ClassNotFoundException
+    public static RegistBean doRegist(int id, String name, Sex sex)
     {
         KaiinVo kaiin = new KaiinVo(id, name, sex);
 
@@ -37,14 +37,14 @@ public class KaiinService
             bean.setMessege("登録しました");
             return bean;
         }
-        catch(SQLException e)
+        catch(SQLException | ClassNotFoundException e)
         {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
-    public static SearchBean doSearch(int id) throws ClassNotFoundException
+    public static SearchBean doSearch(int id)
     {
         SearchBean bean = new SearchBean();
 
@@ -62,14 +62,14 @@ public class KaiinService
             bean.setMessege("検索しました");
             return bean;
         }
-        catch(SQLException e)
+        catch(SQLException | ClassNotFoundException e)
         {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
-    public static ListoutBean doListout() throws ClassNotFoundException
+    public static ListoutBean doListout()
     {
         ListoutBean bean = new ListoutBean();
 
@@ -94,7 +94,7 @@ public class KaiinService
             bean.setMessage("会員リストです");
             return bean;
         }
-        catch(SQLException e)
+        catch(SQLException | ClassNotFoundException e)
         {
             e.printStackTrace();
             throw new RuntimeException(e);

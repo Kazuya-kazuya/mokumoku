@@ -30,18 +30,11 @@ public class RegistServlet extends HttpServlet
         String name = request.getParameter("registName");
         Sex sex = Sex.valueOf(request.getParameter("registSex"));
 
-        try
-        {
-            RegistBean bean;
-            bean = service.KaiinService.doRegist(id, name, sex);
-            request.setAttribute("bean", bean);
-            RequestDispatcher disp = request.getRequestDispatcher("/Regist.jsp");
-            disp.forward(request, response);
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
+        RegistBean bean;
+        bean = service.KaiinService.doRegist(id, name, sex);
+        request.setAttribute("bean", bean);
+        RequestDispatcher disp = request.getRequestDispatcher("/Regist.jsp");
+        disp.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
