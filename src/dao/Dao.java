@@ -14,8 +14,8 @@ public abstract class Dao
 
 	public static Connection getConnection() throws ClassNotFoundException, SQLException
 	 {
-		String user = "root";
-		String pass = "root";
+		String user = "train2018";
+		String pass = "train2018";
 		String servername = "localhost:3306";
 		String dbname = "new_schema";
 
