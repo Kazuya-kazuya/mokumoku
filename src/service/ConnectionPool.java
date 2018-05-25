@@ -35,7 +35,7 @@ public class ConnectionPool
             for(int i = 0; i < numOfConnection; i++)
             {
                 PooledConnection pooledConnection = connectionList.get(i);
-                if(pooledConnection.getUsed())
+                if(!pooledConnection.getUsed())
                 {
                     pooledConnection.setUsed(true);
                     connection = pooledConnection;
